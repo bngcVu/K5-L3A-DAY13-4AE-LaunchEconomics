@@ -52,7 +52,7 @@ Ví dụ: `report/team/20241234_NguyenVanAn.md`.
 
 ### Bằng chứng
 
-- Commit: ……… (điền hash sau khi commit).
+- Commit: `7c31b5a` (code CP1 và `bang_chi_phi.md`), `ea964cb` (`PHAN_CONG.md`), `c1d24bb` (`TEAM.md` và báo cáo cá nhân), nhánh `main`.
 - Output `python lab13.py` (UTF-8): ba phép thử ĐẠT; bảng A2, A3, A4 khớp đáp án trong hướng dẫn, lệch dưới 2%.
 - Công cụ AI đã dùng và cách tự kiểm tra: ghi trong `report/team/MSSV_BuiNgocVu.md` (Vũ tự điền).
 
