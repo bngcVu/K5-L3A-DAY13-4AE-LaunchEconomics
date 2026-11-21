@@ -70,6 +70,69 @@ def mo_hinh(runs, reqs, gia_vao=26, gia_ra=130, gia_tool=15, luong_phut=2000,
                 hoa_don_moi_yc=(tien_token.sum() + tien_tool.sum()) / len(reqs))
 
 
+# ---------- Nhiệm vụ D · Cỡ mẫu và thiết kế pilot ----------
+P1, P2, ALPHA, POWER, ICC = 0.70, 0.75, 0.05, 0.80, 0.02
+
+
+def co_mau(p1, p2, alpha=ALPHA, power=POWER):
+    """Cỡ mẫu mỗi nhóm khi so hai tỉ lệ (công thức z, làm tròn lên)."""
+    from statistics import NormalDist
+    za, zb = NormalDist().inv_cdf(1 - alpha / 2), NormalDist().inv_cdf(power)
+    pb = (p1 + p2) / 2
+    return math.ceil((za * math.sqrt(2 * pb * (1 - pb))
+                      + zb * math.sqrt(p1 * (1 - p1) + p2 * (1 - p2))) ** 2 / (p2 - p1) ** 2)
+
+
+def he_so_thiet_ke(m, icc=ICC):
+    """DE = 1 + (m − 1) × ICC, m là số yêu cầu mỗi cụm."""
+    return 1 + (m - 1) * icc
+
+
+def co_mau_hieu_dung(c, m, icc=ICC):
+    """c cụm × m yêu cầu ÷ DE; luôn nhỏ hơn c ÷ ICC."""
+    return c * m / he_so_thiet_ke(m, icc)
+
+
+def chay_nhiem_vu_d(reqs):
+    n_a = co_mau(P1, P2)
+    print('\nD1 · Cỡ mẫu (baseline 0,70 → 0,75; alpha 0,05; power 0,8; ICC 0,02)')
+    print(f'  a) chia theo yêu cầu: {n_a:,} yêu cầu mỗi nhóm')
+
+    de_b = he_so_thiet_ke(75)
+    n_b = math.ceil(n_a * de_b)
+    nv_b = math.ceil(n_b / 75)
+    print(f'  b) theo nhân viên, m = 75: DE = {de_b:.2f}; n = {n_b:,} mỗi nhóm → {nv_b} nhân viên mỗi nhóm, '
+          f'tổng {2 * nv_b} > 40 → {"không đủ người" if 2 * nv_b > 40 else "đủ người"}')
+
+    tran_c = 20 / ICC
+    print(f'  c) 20 nhân viên mỗi nhóm: cỡ mẫu hiệu dụng tối đa = 20 / 0,02 = {tran_c:,.0f} '
+          f'{"<" if tran_c < n_a else "≥"} {n_a:,} → {"không đạt" if tran_c < n_a else "đạt"}')
+
+    print(f'  d) 6 depot mỗi nhóm: tối đa = 6 / 0,02 = {6 / ICC:,.0f}')
+
+    n_e = co_mau(P1, 0.76)
+    # 20m / (1 + (m − 1)·ICC) ≥ n_e  ⇔  m ≥ n_e·(1 − ICC) / (20 − n_e·ICC)
+    m_e = math.ceil(n_e * (1 - ICC) / (20 - n_e * ICC))
+    print(f'  e) mức chênh 6 điểm: {n_e:,} mỗi nhóm; 20 người mỗi nhóm cần m ≥ {m_e} yêu cầu/người '
+          f'(DE = {he_so_thiet_ke(m_e):.2f}; hiệu dụng {co_mau_hieu_dung(20, m_e):,.0f}); '
+          f'tổng {2 * 20 * m_e:,} yêu cầu ≈ {2 * 20 * m_e / 1500:.1f} ngày khối lượng toàn công ty')
+
+    # Power bất lợi: thiết kế cho 6 điểm nhưng tác động thật chỉ 5 điểm
+    from statsmodels.stats.power import NormalIndPower
+    from statsmodels.stats.proportion import proportion_effectsize
+    pw = NormalIndPower().power(effect_size=proportion_effectsize(P2, P1), nobs1=n_e, alpha=ALPHA)
+    print(f'  power nếu tác động thật chỉ +5 điểm với n = {n_e} mỗi nhóm: {pw:.2f}')
+
+    # D3 · tỉ lệ mở lại hiện tại trước khi đặt luật an toàn
+    mo_lai = reqs['mo_lai_trong_7_ngay'].astype(int)
+    pv = reqs['loai'].isin(['noi_dia', 'hang_nang'])
+    print('\nD3 · Tỉ lệ mo_lai_trong_7_ngay trong đợt chạy thử')
+    print(f'  toàn bộ: {mo_lai.mean() * 100:.2f}% ({mo_lai.sum()}/{len(reqs)})')
+    print(f'  phạm vi noi_dia + hang_nang: {mo_lai[pv].mean() * 100:.2f}% ({mo_lai[pv].sum()}/{pv.sum()})')
+    lam_lai_pv = (reqs.loc[pv, 'ket_qua'] == 'lam_lai').mean()
+    print(f'  tỉ lệ lam_lai trong phạm vi: {lam_lai_pv * 100:.1f}%')
+
+
 if __name__ == '__main__':
     runs = pd.read_csv('logix_runs.csv')
     reqs = pd.read_csv('logix_requests.csv', keep_default_na=False)
@@ -159,6 +222,5 @@ if __name__ == '__main__':
         hoa_von = (BASELINE * viec_ok - token_tool - ca_lam_lai * phut_lam * LUONG_PHUT) / (so_xem * LUONG_PHUT)
         print(f'  {nhan:24s} tong={tong4:12,.0f} cps={tong4 / viec_ok:7,.0f} = {tong4 / viec_ok / BASELINE:.2f}x'
               f'  hoa von: xem lai <= {hoa_von:.1f} phut')
-    # TODO CP4 · Nhiệm vụ D: cỡ mẫu.
-    #   from statsmodels.stats.proportion import proportion_effectsize
-    #   from statsmodels.stats.power import NormalIndPower
+    # CP4 · Nhiệm vụ D: cỡ mẫu và thiết kế pilot.
+    chay_nhiem_vu_d(reqs)
