@@ -104,7 +104,8 @@ Ví dụ: `report/team/20241234_NguyenVanAn.md`.
 - Điền mục E1 và danh sách event trong `report/team/chi_so.md`: tính trực tiếp từ `src/logix_requests.csv` 3 chỉ số (chính 82,83% = 994/1.200; bỏ qua gợi ý 27,12% = 48/177; mở lại 7 ngày 4,25% = 51/1.200), đề xuất thêm 2 chỉ số (dùng và an toàn), đặc tả 11 event có `trace_id` và kiểm tra chéo với mọi chỉ số.
 - Hoàn thiện hồ sơ 1 trang `report/team/ho_so_launch_v0.md` đủ 7 mục với nhãn `simulated` đầy đủ, nêu rõ các con số bất lợi (phút `simulated`, xem lại 100% tốn 0,98×–1,03×, power 0,64 ở mức 5 điểm, lỗi ca 7 và ca 20) và đề xuất **Go có điều kiện** kèm 5 điều kiện, vai trò phụ trách và ngày kiểm tra.
 - Hoàn thiện `report/team/group_report.md`, cập nhật `TEAM.md`, tạo báo cáo cá nhân `report/team/2A202603518_NguyenManhQuyen.md`, chuẩn bị `report/team/phieu_cham.md` cho phiên duyệt chéo Gate 2a và kiểm tra các điều kiện nộp bài (`yaml.safe_load`, không còn dấu `?`, không có từ bị cấm).
-- *(Đang chờ hoàn tất tại lớp: điền cột nhãn độc lập 20 ca của Quyền vào `bang_loi.md`, chấm nhóm n+1 vào `phieu_cham.md` và commit/push chốt.)*
+- CP3: gắn nhãn độc lập 20 ca (người 2) kèm lý do từng ca trong file nháp riêng, không trao đổi với Bảo; đồng thuận 17/20 = 85%, thống nhất 3 ca không trùng (ca 6: Hệ thống → Do người dùng; ca 13: Hệ thống → Giới hạn hệ thống; ca 18: Hệ thống → Ngữ cảnh) theo nguyên nhân gốc và ghi quy tắc phân biệt trong `bang_loi.md`.
+- *(Đang chờ hoàn tất tại lớp: chấm nhóm n+1 vào `phieu_cham.md` và commit/push chốt.)*
 
 ### Bằng chứng
 

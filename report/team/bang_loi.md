@@ -14,41 +14,44 @@
 
 Người gắn nhãn 1: Ngô Gia Bảo · Người gắn nhãn 2: Nguyễn Mạnh Quyền (gắn trong 8 phút, ngồi tách nhau, không trao đổi). Hai cột nhãn chép **nguyên văn** từ file nháp của từng người và không sửa sau khi đã so.
 
-| Ca | Nhãn người 1 (Bảo) | Nhãn người 2 (Quyền) | Trùng? | Nhãn thống nhất |
-| --: | --- | --- | --- | --- |
-| 1 | Do người dùng | (tự gắn) | | Do người dùng |
-| 2 | Hệ thống | (tự gắn) | | Hệ thống |
-| 3 | Ngữ cảnh | (tự gắn) | | Ngữ cảnh |
-| 4 | Giới hạn hệ thống | (tự gắn) | | Giới hạn hệ thống |
-| 5 | Ngầm | (tự gắn) | | Ngầm |
-| 6 | Do người dùng | (tự gắn) | | Do người dùng |
-| 7 | Hệ thống | (tự gắn) | | Hệ thống |
-| 8 | Hệ thống | (tự gắn) | | Hệ thống |
-| 9 | Do người dùng | (tự gắn) | | Do người dùng |
-| 10 | Ngữ cảnh | (tự gắn) | | Ngữ cảnh |
-| 11 | Giới hạn hệ thống | (tự gắn) | | Giới hạn hệ thống |
-| 12 | Ngầm | (tự gắn) | | Ngầm |
-| 13 | Giới hạn hệ thống | (tự gắn) | | Giới hạn hệ thống |
-| 14 | Do người dùng | (tự gắn) | | Do người dùng |
-| 15 | Hệ thống | (tự gắn) | | Hệ thống |
-| 16 | Ngữ cảnh | (tự gắn) | | Ngữ cảnh |
-| 17 | Ngầm | (tự gắn) | | Ngầm |
-| 18 | Ngữ cảnh | (tự gắn) | | Ngữ cảnh |
-| 19 | Giới hạn hệ thống | (tự gắn) | | Giới hạn hệ thống |
-| 20 | Hệ thống | (tự gắn) | | Hệ thống |
+| Ca | Nhãn người 1 (Bảo) | Nhãn người 2 (Quyền) | Trùng? | Nhãn thống nhất | Lý do |
+| --: | --- | --- | --- | --- | --- |
+| 1 | Do người dùng | Do người dùng | Có | Do người dùng | Đầu vào sai (thiếu hai chữ số), lỗi xuất phát từ khách. |
+| 2 | Hệ thống | Hệ thống | Có | Hệ thống | Gọi sai tham số tool so với thiết kế, lỗi đã lộ (hoàn thiếu, khách mở lại). |
+| 3 | Ngữ cảnh | Ngữ cảnh | Có | Ngữ cảnh | Đúng thiết kế (ví LogiX), chỉ giả định không khớp kỳ vọng nhận tiền về ngân hàng. |
+| 4 | Giới hạn hệ thống | Giới hạn hệ thống | Có | Giới hạn hệ thống | Thiếu dữ liệu chặng nước ngoài; trợ lý nói rõ và chuyển nhân viên. |
+| 5 | Ngầm | Ngầm | Có | Ngầm | Thừa tiền hệ thống, chỉ phát hiện nhờ kiểm tra mẫu. |
+| 6 | Do người dùng | Hệ thống | **Không** | Do người dùng | Trợ lý không nhận ra nội dung mô tả (hàng vỡ) mâu thuẫn với mục đã chọn, xử lý sai luồng. Cách gắn khác: ND, vì khách chọn nhầm mục. |
+| 7 | Hệ thống | Hệ thống | Có | Hệ thống | Lỗi ghi sổ cái nhưng vẫn báo thành công, trái thiết kế và đã lộ ra. |
+| 8 | Hệ thống | Hệ thống | Có | Hệ thống | Dẫn điều khoản không tồn tại; số tiền đúng nên không phải Ngầm. |
+| 9 | Do người dùng | Do người dùng | Có | Do người dùng | Khách nhập sai loại mã. Việc không gợi ý chỉ là chỗ cải thiện. |
+| 10 | Ngữ cảnh | Ngữ cảnh | Có | Ngữ cảnh | Từ chối đúng chính sách; giả định "cam kết 24 giờ" không khớp hoàn cảnh bão. |
+| 11 | Giới hạn hệ thống | Giới hạn hệ thống | Có | Giới hạn hệ thống | Không xử lý được âm thanh, ngoài khả năng kỹ thuật. |
+| 12 | Ngầm | Ngầm | Có | Ngầm | Sai chi phí (token gấp 3) kéo dài 3 tuần mà không ai thấy. |
+| 13 | Giới hạn hệ thống | Hệ thống | **Không** | Giới hạn hệ thống | Ngoài phạm vi là đúng, nhưng trả lời chung chung thay vì nói rõ không xử lý được, nên lỗi nằm ở cách xử lý. |
+| 14 | Do người dùng | Do người dùng | Có | Do người dùng | Thao tác nhầm của khách. |
+| 15 | Hệ thống | Hệ thống | Có | Hệ thống | Tính 100% thay vì 50%, trái chính sách; lỗi lộ ra nhờ nhân viên xem lại. |
+| 16 | Ngữ cảnh | Ngữ cảnh | Có | Ngữ cảnh | Đúng thiết kế "gửi ngay", chỉ giả định không tính đến giờ khách nghỉ. |
+| 17 | Ngầm | Ngầm | Có | Ngầm | Dùng bảng giá cũ, lệch nhỏ, không ai mở lại trong 9 ngày. |
+| 18 | Ngữ cảnh | Hệ thống | **Không** | Ngữ cảnh | Tin nhắn thiếu cách tính khiến khách hiểu sai, là khiếm khuyết thiết kế đầu ra. Cách gắn khác: NC, vì tính toán đúng chính sách. |
+| 19 | Giới hạn hệ thống | Giới hạn hệ thống | Có | Giới hạn hệ thống | Dữ liệu chỉ 12 tháng; trợ lý nói rõ và chuyển kèm tóm tắt. |
+| 20 | Hệ thống | Hệ thống | Có | Hệ thống | Khách gửi lại là hành vi bình thường; gốc là lệnh hoàn thiếu khoá chống trùng. |
 
-**Tỉ lệ đồng thuận:** ... / 20 = ...%
+**Tỉ lệ đồng thuận:** 17 / 20 = 85% (≥ 80%, không cần viết lại định nghĩa). Ba ca không trùng: ca 6, ca 13, ca 18.
 
-> Cột "Nhãn thống nhất" là đáp án chuẩn (4 Do người dùng, 5 Hệ thống, 4 Ngữ cảnh, 4 Giới hạn, 3 Ngầm). Hai cột nhãn cá nhân và cột "Trùng?" phải do Bảo và Quyền tự gắn độc lập rồi điền; tỉ lệ đồng thuận tính sau khi so.
+> Nhãn thống nhất sau khi so: 4 Do người dùng (1, 6, 9, 14), 5 Hệ thống (2, 7, 8, 15, 20), 4 Ngữ cảnh (3, 10, 16, 18), 4 Giới hạn hệ thống (4, 11, 13, 19), 3 Ngầm (5, 12, 17).
+>
+> Bộ nhãn người 2 (Quyền) gắn độc lập trong file nháp riêng (3 Do người dùng, 8 Hệ thống, 3 Ngữ cảnh, 3 Giới hạn hệ thống, 3 Ngầm), không trao đổi với người 1, chép nguyên văn vào cột trên và không sửa sau khi so.
 
 ## Quy tắc phân biệt cho các ca không trùng
 
 Mỗi ca không trùng một câu. Đồng thuận dưới 80% thì ghi định nghĩa đã viết lại.
 
-- **Ca 6, 9 — Do người dùng, không phải Hệ thống:** gốc lỗi là khách chọn sai mục (ca 6) hoặc nhập sai loại mã (ca 9). Việc trợ lý không gợi ý thêm nằm ở cột khắc phục, không đổi nguyên nhân gốc.
-- **Ca 8, 15 — Hệ thống, không phải Ngầm:** sai đã lộ ra (ca 8 trích dẫn điều khoản không tồn tại, nhìn thấy được; ca 15 nhân viên bắt được khi xem lại). Ngầm chỉ dùng khi không ai nhận ra cho tới khi kiểm tra mẫu.
-- **Ca 13 — Giới hạn, không phải Hệ thống:** yêu cầu ngoài phạm vi (sản phẩm của đối tác bảo hiểm) là giới hạn, kể cả khi trợ lý xử lý giới hạn đó kém (trả lời chung chung).
-- **Ca 18 — Ngữ cảnh, không phải Hệ thống:** số tiền hoàn 15.000 đ đúng chính sách; chỉ giả định "khách tự hiểu cách tính" là không khớp, nên khách tưởng bị hoàn thiếu.
+- **Ca 6 — Do người dùng, không phải Hệ thống (không trùng, Bảo: Do người dùng · Quyền: Hệ thống):** Quyền gắn Hệ thống vì trợ lý không nhận ra mô tả "hàng vỡ" mâu thuẫn với mục đã chọn; thống nhất là Do người dùng vì nguyên nhân gốc là khách chọn nhầm mục (tương tự ca 9 khách nhập sai loại mã), còn việc kiểm tra chéo mô tả hay gợi ý nằm ở cột khắc phục.
+- **Ca 13 — Giới hạn hệ thống, không phải Hệ thống (không trùng, Bảo: Giới hạn · Quyền: Hệ thống):** Quyền gắn Hệ thống vì trợ lý trả lời chung chung thay vì nói rõ không xử lý được như ca 4, 11, 19; thống nhất là Giới hạn hệ thống vì nguyên nhân gốc là yêu cầu ngoài phạm vi (sản phẩm của đối tác bảo hiểm), còn cách phản hồi kém là chỗ cần sửa.
+- **Ca 18 — Ngữ cảnh, không phải Hệ thống (không trùng, Bảo: Ngữ cảnh · Quyền: Hệ thống):** Quyền gắn Hệ thống vì tin nhắn thiếu cách tính khiến khách hiểu sai; thống nhất là Ngữ cảnh vì số tiền hoàn 15.000 đ đúng thiết kế và chính sách, chỉ giả định "khách tự hiểu cách tính" không khớp hoàn cảnh.
+- **Ca 8, 15 — Hệ thống, không phải Ngầm:** sai đã lộ ra (ca 8 trích dẫn điều khoản không tồn tại, trái thiết kế và nhìn thấy được, số tiền đúng nên không phải Ngầm; ca 15 nhân viên bắt được khi xem lại). Ngầm chỉ dùng khi không ai nhận ra cho tới khi kiểm tra mẫu.
+- **Ca 20 — Hệ thống, không phải Do người dùng:** khách gửi lại là hành vi bình thường; nguyên nhân gốc là lệnh hoàn thiếu khoá chống trùng (`idempotency_key`) nên hoàn hai lần.
 - **Ca 12 — Ngầm:** kết quả vẫn đúng nhưng chi phí token gấp 3 lần suốt 3 tuần mà không ai thấy; "sai" ở đây là sai về chi phí, không chỉ về câu trả lời.
 
 ## Bảng khắc phục cho 5 ca, mỗi loại một ca
