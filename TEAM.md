@@ -15,7 +15,7 @@ Phân công chi tiết và điều kiện bàn giao: [PHAN_CONG.md](PHAN_CONG.md
 | --: | ------ | ---- | ----- | ------ | ------- |
 |   1 | Bùi Ngọc Vũ | 2A202603463 | buingocvuuu@gmail.com | https://github.com/bngcVu | Người viết code (trước giải lao): CP1 · A |
 |   2 | Tô Minh Thành | 2A202603439 | tominhthanh75@gmail.com | https://github.com/thanhtmhe186559 | Người kiểm số: CP2 · B và E2 |
-|   3 | Ngô Gia Bảo | 2A2026033482 | *(chờ Bảo điền)* | https://github.com/b-baocode | Người gắn nhãn 1, người viết code sau giải lao: CP3 · C và CP4 · D |
+|   3 | Ngô Gia Bảo | 2A2026033482 | 26ai.baong4@vinuni.edu.vn | https://github.com/b-baocode | Người gắn nhãn 1, người viết code sau giải lao: CP3 · C và CP4 · D |
 |   4 | Nguyễn Mạnh Quyền | 2A202603518 | 26ai.quyennm3@vinuni.edu.vn | https://github.com/manhquyenkma | Người gắn nhãn 2, kiêm giữ hồ sơ: CP5 · E, duyệt chéo, nộp bài |
 
 Bốn vai của lab:
