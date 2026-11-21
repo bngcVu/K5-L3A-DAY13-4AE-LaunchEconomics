@@ -2,18 +2,23 @@
 
 Một trang. Cột trạng thái chỉ nhận: **Xong, có bằng chứng · Chưa · Giả lập**. Mục nào dựa trên cột `_simulated` ghi Giả lập. Người phụ trách là một vai trò, không ghi "cả đội". Gate 2a chỉ duyệt kế hoạch pilot: không viết như thể trợ lý đã được duyệt chạy chính thức (xem quy tắc 5 trong `README.md`).
 
-Nhóm: ... · Lớp: ...
+Nhóm: **4AE** · Lớp: **L3A** · Phạm vi đề xuất pilot: **chỉ `noi_dia` và `hang_nang` ở 12 depot** (982/1.200 = 81,8% khối lượng mẫu; loại `quoc_te` và `doi_tac`).
 
 | Mục | Con số chính | Trạng thái | Người phụ trách |
 | --- | --- | --- | --- |
-| 1 · Chi phí mỗi việc thành công | ... | ... | ... |
-| 2 · Ba yếu tố nhạy nhất | ... | ... | ... |
-| 3 · So với nhân viên tự làm | ... | ... | ... |
-| 4 · Chỉ số chính, chỉ số dùng, chỉ số an toàn | ... | ... | ... |
-| 5 · Bảng lỗi và cách khắc phục | ... | ... | ... |
-| 6 · Pilot plan | ... | ... | ... |
-| 7 · Rủi ro kinh tế | ... | ... | ... |
+| 1 · Chi phí mỗi việc thành công | Toàn mẫu: **4.472 đ/việc** [simulated] (4.373.585 đ ÷ 978), gấp **16,3×** hoá đơn token+tool/yêu cầu (274,7 đ, đo từ trace); giờ nhân viên chiếm **92,5%** (làm lại 51,8%, xem lại 40,7%) [simulated]. Phạm vi `noi_dia`+`hang_nang`: **3.414 đ** chưa cố định; cộng cố định 40 triệu/tháng thành **4.599 đ (0,38×)** ở 45.000 yc/tháng và **5.784 đ (0,48×)** ở 22.500 yc/tháng [simulated]. | Giả lập | PM trợ lý hoàn phí |
+| 2 · Ba yếu tố nhạy nhất | (1) **Số ca làm lại** (+51,8%, lên 6.787 đ), (2) **Tỉ lệ xem lại** (+40,7%, lên 6.292 đ), (3) **Lương nhân viên +25%** (+23,1%, lên 5.506 đ); giá token ×2 chỉ +5,6% [simulated]. Giới hạn **2 lần chạy** rẻ nhất toàn hệ thống (**6.901.220 đ**), khác giới hạn 1 lần có chi phí/việc thấp nhất (4.111 đ) nhưng đẩy thêm 85 ca sang nhân viên [simulated]. | Giả lập | PM trợ lý hoàn phí |
+| 3 · So với nhân viên tự làm | Toàn mẫu (cộng 12.000 đ × 222 ca không thành công): **5.865 đ/yc = 0,49×** [simulated]. Theo loại: giữ `noi_dia` (**2.696 đ = 0,22×**, 95,0%) và `hang_nang` (**8.221 đ = 0,69×**, 74,1%); loại `quoc_te` (**22.515 đ = 1,88×**, 27,3%, chạy lại tụt 30,0% → 11,4% → 2,2%) và `doi_tac` (**10.215 đ = 0,85×**, 54,4%, điều khoản riêng) [simulated]. **Bất lợi (B4):** xem lại 100% tốn **11.743 đ (0,98×)** (9 phút làm lại) hoặc **12.415 đ (1,03×)** (15,3 phút dữ liệu thật) [simulated], hoà vốn ≤ 5,1 hoặc ≤ 4,8 phút/lần xem. | Giả lập | Trưởng nhóm CSKH |
+| 4 · Chỉ số chính, chỉ số dùng, chỉ số an toàn | Trong đợt chạy thử (không có đối chứng, không kết luận "đã nâng"): chính **82,83%** (994/1.200; phạm vi 92,26%), bỏ qua gợi ý **27,12%** (48/177; phạm vi 21,09%), mở lại 7 ngày **4,25%** (51/1.200; phạm vi 3,97%). Thêm 2 chỉ số tự đề xuất (tỉ lệ mở trợ lý theo nhóm, % đơn hoàn sai tiền kiểm mẫu) và **11 event có `trace_id`** (`chi_so.md`). | Xong, có bằng chứng | Kỹ sư trưởng agent |
+| 5 · Bảng lỗi và cách khắc phục | 20 ca theo 5 loại Google PAIR (4 Do người dùng, 5 Hệ thống, 4 Ngữ cảnh, 4 Giới hạn, 3 Ngầm); đồng thuận: *(chờ Quyền bổ sung cột nhãn độc lập và so nhãn với Bảo trong `bang_loi.md`)*. Bảng khắc phục đủ 5 ca (9, 20, 18, 4, 17) có cách phát hiện đo được và vai trò phụ trách; 2 lỗi hệ thống chặn pilot (ca 7 báo thành công khi 503, ca 20 hoàn trùng) phải vá trước khi chạy. | Chưa | Kỹ sư trưởng agent |
+| 6 · Pilot plan | Chia ngẫu nhiên **20 + 20 nhân viên** (20 cụm/nhóm, phân tầng theo depot, đối chứng cùng thời gian), phạm vi `noi_dia`+`hang_nang`, rollout `[0,10; 0,25; 0,50]`, ngày quyết định `2027-01-12` (`pilot_plan.yaml`). **Bất lợi:** 40 nhân viên tối đa 1.000 mẫu hiệu dụng < 1.251 (không đủ cho 5 điểm) → chấp nhận **MDE 6 điểm** (n = 859, m ≥ 299 yc/người, DE = 6,96; **power chỉ còn 0,64** nếu tác động thật là 5 điểm). Đủ **3 luật dừng** (an toàn, chi phí > 5.147 đ [simulated], bỏ qua > 40%) theo mẫu NẾU–TRONG–THÌ–KHÔNG THÌ; rollback trong 30 phút. | Xong, có bằng chứng | Giám đốc vận hành LogiX-VN |
+| 7 · Rủi ro kinh tế | 3 rủi ro từ bảng độ nhạy (`chi_so.md` E2): (1) Làm lại ×2 (+51,8% → 6.787 đ), (2) Xem lại 100% kéo dài (11.743 đ = 0,98×; 12.415 đ = 1,03× nếu 15,3 phút làm lại), (3) Khối lượng giảm một nửa (cố định tăng lên 2.370 đ/việc → 5.784 đ) [simulated]. Đều có ngưỡng cảnh báo sớm, hành động và vai trò phụ trách. | Giả lập | Kế toán trưởng |
 
-**Đề xuất:** Go · Go có điều kiện · No-go (giữ một). Go có điều kiện: ghi từng điều kiện, người phụ trách, ngày kiểm tra. No-go: ghi việc phải làm để quay lại cổng.
+**Đề xuất:** **Go có điều kiện** — chỉ mở pilot cho phạm vi thu hẹp `noi_dia` + `hang_nang` (loại `quoc_te`, `doi_tac`), giới hạn tối đa **2 lần chạy**, chỉ bắt đầu khi hoàn tất đủ các điều kiện xử lý điểm bất lợi sau:
 
-- ...
+- **Điều kiện 1 — Vá lỗi hệ thống chặn pilot (ca 7, ca 20):** bắt buộc `idempotency_key` ở `refund_ledger_write`, chỉ gửi thông báo "đã hoàn" khi sổ cái trả `ok`, bật đối soát sổ cái mỗi giờ (ngưỡng 0 ca hoàn trùng). **Phụ trách:** Kỹ sư trưởng agent · **Ngày kiểm tra:** `2026-12-04`.
+- **Điều kiện 2 — Chốt đánh đổi cỡ mẫu và cách chia pilot:** ký chấp nhận **MDE 6 điểm (power 0,64 ở mức 5 điểm)**, chốt seed bốc thăm `20261207`, khoá quyền trợ lý theo tài khoản nhân viên để giảm ảnh hưởng gián tiếp. **Phụ trách:** Giám đốc vận hành LogiX-VN · **Ngày kiểm tra:** `2026-12-04`.
+- **Điều kiện 3 — Bật đủ 11 event có `trace_id` và thay số `simulated` bằng phút đo thật:** nghiệm thu log `staff_review_decision.phut_xem_lai`, `staff_rework_completed.phut_lam_lai` trước khi chạy và tính lại chi phí thật ngay sau tuần 1 (bước 0,10). **Phụ trách:** Kỹ sư trưởng agent (`2026-12-04`) và PM trợ lý hoàn phí (`2026-12-14`).
+- **Điều kiện 4 — Kế hoạch giảm xem lại theo bậc (xử lý điểm bất lợi B4: 0,98×–1,03× [simulated]):** hạ tỉ lệ xem lại theo bậc khi tỉ lệ bỏ qua gợi ý < 15% và theo dõi thời lượng xem lại ≤ 4,8 phút/lần; nếu cuối bước 0,25 tỉ lệ xem lại còn > 50% thì dừng mở rộng. **Phụ trách:** Trưởng nhóm CSKH · **Ngày kiểm tra:** `2026-12-20`.
+- **Điều kiện 5 — Kiểm soát lỗi ngầm về tiền (ca 5, ca 17):** bật quy trình kiểm tra mẫu `audit_sample_checked` 100 đơn/tuần (ngưỡng > 1% đơn lệch) và xoá bộ nhớ đệm bảng giá tự động khi cập nhật giá. **Phụ trách:** Kế toán trưởng · **Ngày kiểm tra:** `2026-12-04`.
+- *(Ghi chú rà soát nội bộ trước 17:00: hoàn tất đối chiếu bộ nhãn độc lập của Quyền trong `bang_loi.md` để xác nhận đồng thuận ≥ 80% và cập nhật trạng thái mục 5 thành `Xong, có bằng chứng`.)*
