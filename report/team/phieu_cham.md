@@ -2,20 +2,27 @@
 
 Nhóm số n chấm nhóm số n + 1; nhóm cuối chấm nhóm 1. Chấm theo bằng chứng trong hồ sơ, không theo cách trình bày: một đề xuất No-go có lý do bằng số được điểm cao hơn một đề xuất Go bỏ qua con số bất lợi.
 
-- Nhóm chấm (hội đồng): 4AE (Lớp L3A)
-- Nhóm được chấm: (điền tại phiên duyệt chéo Gate 2a lúc 17:00)
+- Nhóm chấm (hội đồng): 4AE
+- Nhóm được chấm: OHOHO (L3A)
 
 | Tiêu chí | 0 điểm | 5 điểm | 10 điểm | Điểm | Lý do (có số) |
 | --- | --- | --- | --- | ---: | --- |
-| Đề xuất khớp bằng chứng | Mâu thuẫn với số của chính nhóm | Khớp nhưng bỏ qua một con số bất lợi | Khớp, nêu cả con số bất lợi và cách xử lý | ... | ... |
-| Số giả lập và phạm vi | Không nhãn; phạm vi "mọi yêu cầu" | Có nhãn hoặc có thu hẹp phạm vi | Nhãn ở mọi số giả lập; phạm vi thu hẹp có lý do bằng số | ... | ... |
-| Pilot ra được quyết định | Không đối chứng hoặc thiếu cỡ mẫu | Đủ cỡ mẫu, luật dừng chung chung | Tách được tác động, đủ mẫu, luật dừng có ngưỡng, thời hạn, người có quyền dừng | ... | ... |
-| **Tổng** | | | | **... / 30** | |
+| Đề xuất khớp bằng chứng | Mâu thuẫn với số của chính nhóm | Khớp nhưng bỏ qua một con số bất lợi | Khớp, nêu cả con số bất lợi và cách xử lý | 9 | Đề xuất "Go có điều kiện, chỉ noi_dia + hang_nang" khớp số của nhóm: cả hệ thống 5.865 đ/yêu cầu = 0,49× mức 12.000 đ; noi_dia 0,22×, hang_nang 0,69×; quoc_te 1,88× và doi_tac 0,85× bị loại. Nêu đủ số bất lợi và gắn điều kiện có người phụ trách, ngày kiểm tra: xem lại 100% → 0,98–1,03×; power chỉ 0,64 nếu tác động thật là 5 điểm; 1.251 > 1.000 yêu cầu tối đa với 20 nhân viên/nhóm. Chạy lại `src/lab13.py` ra đúng 4.472 đ, 16,3×, 51,8%/40,7%/23,1%, 1.251/3.103/1.000/300/859 và power 0,64 (tính lại độc lập = 0,642). Trừ 1 điểm: hồ sơ dùng baseline 0,70 (số đề cho) để tính cỡ mẫu nhưng chính trace của nhóm cho chỉ số chính 82,83% (994/1.200), chênh 13 điểm mà không giải thích; và chưa nêu chi phí cố định 40 triệu/tháng cộng vào mỗi việc thành công ở quy mô pilot (chỉ có 0,38× ở 45.000 yc/tháng, 0,48× ở nửa khối lượng). |
+| Số giả lập và phạm vi | Không nhãn; phạm vi "mọi yêu cầu" | Có nhãn hoặc có thu hẹp phạm vi | Nhãn ở mọi số giả lập; phạm vi thu hẹp có lý do bằng số | 8 | Gần như mọi số tiền và phần trăm lấy từ `phut_*_simulated` đều có nhãn `simulated` (4.472 đ, 6.787 đ, 11.743 đ, 0,98×...), bảng A2 tách rõ "đo từ trace" với "simulated". Phạm vi thu hẹp có lý do bằng số: quoc_te chỉ thành công 27,3%, 22.515 đ = 1,88×, chạy lại không cứu (ok 30,0% → 11,4% → 2,2%). Trừ 2 điểm vì nhãn không nhất quán: `pilot_plan.yaml` tự liệt kê 0,70, 0,06, 0,02, 1.251, 859, 299, 6,96, 0,64, 4,25%, 3,97% là `simulated_inputs`, nhưng mục 4 và 6 của `ho_so_launch_v0.md` ghi "Xong, có bằng chứng" thay vì "Giả lập"; `chi_so.md` không gắn nhãn cho 82,83%, 27,12%, 4,25%. |
+| Pilot ra được quyết định | Không đối chứng hoặc thiếu cỡ mẫu | Đủ cỡ mẫu, luật dừng chung chung | Tách được tác động, đủ mẫu, luật dừng có ngưỡng, thời hạn, người có quyền dừng | 9 | Tách được tác động: chia ngẫu nhiên theo nhân viên có seed ghi trước, phân tầng theo depot, đối chứng chạy cùng tuần, 20 + 20 cụm, có nêu rủi ro lan truyền trong depot. Cỡ mẫu: 859 yêu cầu/nhóm, ≥ 299 yêu cầu/nhân viên (DE 6,96), đánh đổi MDE 6 điểm được nêu và cần Giám đốc vận hành ký. 3 luật dừng đủ ngưỡng, thời hạn, người dừng (mở lại ≥ +2 điểm hoặc > 6%; CPS > 8.000 đ trong 2 tuần; bỏ qua gợi ý > 40% trong 1 tuần), cờ tắt hiệu lực 30 phút, ngày quyết định 2027-01-05, không xem chỉ số chính giữa kỳ. Trừ 1 điểm: không ghi ngày bắt đầu và thời lượng pilot; `rollout: [0.10, 0.25, 0.50]` không rõ liên hệ với `control_share: 0.5` và 20 + 20 nhân viên; luật dừng 1 gộp nhiều điều kiện trong một câu. |
+| **Tổng** | | | | **26 / 30** | |
 
-**Quyết định của hội đồng:** Go · Go có điều kiện · No-go (giữ một)
+**Quyết định của hội đồng:** Go có điều kiện
 
-**Lý do:** ...
+**Lý do:** Đề xuất khớp số của chính nhóm và nêu đủ số bất lợi: cả hệ thống 0,49× nhưng xem lại 100% đẩy lên 0,98–1,03× (`simulated`), power chỉ 0,64 nếu tác động thật là 5 điểm. Phạm vi noi_dia + hang_nang có lý do bằng số (quoc_te 1,88×), và pilot có đối chứng, đủ mẫu ở MDE 6 điểm (859 yêu cầu/nhóm), luật dừng có ngưỡng và người dừng. Chưa Go hẳn vì còn ba điều kiện: (1) giải thích baseline 0,70 so với 82,83% đo được và tính lại cỡ mẫu nếu baseline thật cao hơn; (2) ghi ngày bắt đầu và thời lượng pilot; (3) tính CPS cộng chi phí cố định 40 triệu/tháng ở đúng quy mô pilot, vì ở khối lượng thấp mỗi việc thành công gánh nhiều chi phí cố định hơn (nhóm đã ghi ngưỡng ~4.660 việc thành công/tháng nhưng chưa đối chiếu với pilot).
 
-**Một câu hỏi cho đội trình:** ...
+**Một câu hỏi cho đội trình:** Cỡ mẫu 859 dựa trên baseline 0,70 (số đề cho), nhưng trace của chính nhóm cho chỉ số chính 82,83%; pilot sẽ dùng baseline nào để ra quyết định ngày 2027-01-05, và nếu baseline thật là ~0,83 thì mức chênh 6 điểm còn đo được không? Pilot bắt đầu ngày nào, kéo dài bao lâu, và ở khối lượng 20 nhân viên được trợ lý hỗ trợ thì CPS cộng 40 triệu cố định là bao nhiêu so với 12.000 đ?
 
-**Câu trả lời của đội trình (ghi lại tại buổi):** ...
+**Câu trả lời của đội trình (ghi lại tại buổi):** *
+- Baseline: 0,70 là số giả định tính cỡ mẫu; 82,83% là chạy thử thiếu đối chứng nên không lấy làm chuẩn. Pilot sẽ lấy baseline từ nhóm đối chứng cùng kỳ và so trực tiếp hai nhóm vào ngày 2027-01-05.
+
+- Cỡ mẫu (baseline ~0,83): Cần ít mẫu hơn: 781 yêu cầu/nhóm cho mức chênh 5 điểm và 525 cho mức 6 điểm (thấp hơn 1.250 và 857 ở nền 0,70). Với 859 mẫu hiệu dụng/nhóm, mức chênh 5 điểm đủ power 0,8 — kế hoạch hiện tại đang tính thận trọng.
+
+- Lịch chạy: Chạy 2 tuần từ 2026-12-22 đến 2027-01-05 sau khi đủ 4 điều kiện. Trung bình 1.500 yêu cầu/ngày chia 40 người (37,5/người/ngày), định mức 299 yêu cầu/người mất ~8 ngày làm việc (~10 ngày nếu chỉ tính noi_dia + hang_nang, chiếm 982/1.200 = 81,8%), kịp trong 2 tuần.
+
+- Chi phí cố định pilot: Với 5.980 yêu cầu nhóm trợ lý (20 người × 299) gánh trọn 40 triệu đ/tháng, ước tính ~5.481 việc thành công (tỷ lệ 91,6% từ 900/982), chi phí cố định ~7.298 đ/việc, tổng ~10.712 đ (0,89× mức 12.000 đ — sát hòa vốn). Chạy đủ 1 tháng (~13.500 yêu cầu), cố định còn ~3.233 đ, tổng ~6.647 đ (0,55×). Pilot 2 tuần chưa tạo lợi thế chi phí rõ rệt so với làm tay, mục tiêu chính là đo thời gian rà soát và chất lượng thật.
